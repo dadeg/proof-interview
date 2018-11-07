@@ -11,7 +11,7 @@ class App extends Component {
 
     // set the priority in the docker-compose file. You will need to restart this app with docker-compose to update it.
     const priority = process.env.REACT_APP_CAMPAIGN_PRIORITY.split(",").map(Number);
-  console.log(priority);
+
     this.campaignService = new CampaignService(priority);
     this.userService = new UserService();
 
