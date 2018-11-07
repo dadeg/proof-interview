@@ -9,8 +9,10 @@ class App extends Component {
 
     this.state = { id: "", photo: "shrug.jpg" };
 
-    // set the priority in the docker-compose file. You will need to restart this app with docker-compose to update it.
-    const priority = process.env.REACT_APP_CAMPAIGN_PRIORITY.split(",").map(Number);
+    // set the priority in the URL by setting a query param, /?priority=1,2,3,4,5,6,7
+    const urlParams = new URLSearchParams(window.location.search);
+    let priority = urlParams.get("priority") || "1,2,3,4,5,6,7";
+    priority = priority.split(",").map(Number);
 
     this.campaignService = new CampaignService(priority);
     this.userService = new UserService();
